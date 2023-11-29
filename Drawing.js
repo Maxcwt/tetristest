@@ -61,13 +61,13 @@ class Drawing {
     }
 
     moveRight() {
-        if (this.checkRight()) {
+        if (this.checkRight() && this.checkBottom()) {
             this.x += 1;
         }
     }
 
     moveLeft() {
-        if (this.checkLeft()) {
+        if (this.checkLeft() && this.checkBottom()) {
             this.x -= 1;
         }
     }
@@ -79,36 +79,38 @@ class Drawing {
         }
     }
     changeRotation() {
-        let tempTemplate = [];
-        for (let i = 0; i < this.template.length; i++)
-            tempTemplate[i] = this.template[i].slice();
-        let n = this.template.length;
-        for (let layer = 0; layer < n / 2; layer++) {
-            let first = layer;
-            let last = n - 1 - layer;
-            for (let i = first; i < last; i++) {
-                let offset = i - first;
-                let top = this.template[first][i];
-                this.template[first][i] = this.template[last - offset][first]; // Correction
-                this.template[last - offset][first] = this.template[last][last - offset];
-                this.template[last][last - offset] = this.template[i][last];
-                this.template[i][last] = top;
+        if (this.checkBottom() && this.checkLeft() && this.checkRight()) {
+            let tempTemplate = [];
+            for (let i = 0; i < this.template.length; i++)
+                tempTemplate[i] = this.template[i].slice();
+            let n = this.template.length;
+            for (let layer = 0; layer < n / 2; layer++) {
+                let first = layer;
+                let last = n - 1 - layer;
+                for (let i = first; i < last; i++) {
+                    let offset = i - first;
+                    let top = this.template[first][i];
+                    this.template[first][i] = this.template[last - offset][first];
+                    this.template[last - offset][first] = this.template[last][last - offset];
+                    this.template[last][last - offset] = this.template[i][last];
+                    this.template[i][last] = top;
+                }
             }
-        }
 
-        for (let i = 0; i < this.template.length; i++) {
-            for (let j = 0; j < this.template[i].length; j++) {
-                if (this.template[i][j] == 0) continue;
-                let realX = j + this.getTruncedPosition().x;
-                let realY = i + this.getTruncedPosition().y;
-                if (
-                    realX < 0 ||
-                    realX >= squareCountX ||
-                    realY < 0 ||
-                    realY >= squareCountY
-                ) {
-                    this.template = tempTemplate;
-                    return false;
+            for (let i = 0; i < this.template.length; i++) {
+                for (let j = 0; j < this.template[i].length; j++) {
+                    if (this.template[i][j] == 0) continue;
+                    let realX = j + this.getTruncedPosition().x;
+                    let realY = i + this.getTruncedPosition().y;
+                    if (
+                        realX < 0 ||
+                        realX >= squareCountX ||
+                        realY < 0 ||
+                        realY >= squareCountY
+                    ) {
+                        this.template = tempTemplate;
+                        return false;
+                    }
                 }
             }
         }
@@ -305,8 +307,17 @@ const shapes = [
 
 
 window.addEventListener("keydown", (event) => {
-    if (event.keyCode == 37 && gameOver == false) currentShape.moveLeft();
-    else if (event.keyCode == 38 && gameOver == false) currentShape.changeRotation();
-    else if (event.keyCode == 39 && gameOver == false) currentShape.moveRight();
-    else if (event.keyCode == 40 && gameOver == false) currentShape.moveBottom();
+    if (event.keyCode == 37 && gameOver == false){
+        currentShape.moveLeft();
+
+    }
+    else if (event.keyCode == 38 && gameOver == false){
+        currentShape.changeRotation();
+    }
+    else if (event.keyCode == 39 && gameOver == false) {
+        currentShape.moveRight();
+    }
+    else if (event.keyCode == 40 && gameOver == false) {
+        currentShape.moveBottom();
+    }
 });

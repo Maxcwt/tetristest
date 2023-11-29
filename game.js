@@ -49,8 +49,7 @@ class Game {
 
     gameLoop () {
         setInterval(this.update, 1000 / gameSpeed);
-        console.log("oui");
-        setInterval(draw, 1000 / framePerSecond);
+        setInterval(draw, 999 / framePerSecond);
     };
 }
 
