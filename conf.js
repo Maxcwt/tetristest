@@ -1,0 +1,22 @@
+const imageSquareSize = 24;
+const size = 40;
+const framePerSecond = 24;
+let gameSpeed = 1;
+const canvas = document.getElementById("canvas");
+const nextShapeCanvas = document.getElementById("nextShapeCanvas");
+const scoreCanvas = document.getElementById("scoreCanvas");
+const image = document.getElementById("image");
+const ctx = canvas.getContext("2d");
+const nctx = nextShapeCanvas.getContext("2d");
+const sctx = scoreCanvas.getContext("2d");
+const squareCountX = canvas.width / size;
+const squareCountY = canvas.height / size;
+const musique = document.getElementById('musique');
+
+let gameMap;
+let gameOver;
+let currentShape;
+let nextShape;
+let score;
+let initialTwoDArr;
+let whiteLineThickness = 4;
