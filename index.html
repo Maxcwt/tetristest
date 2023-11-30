@@ -12,9 +12,11 @@
     </audio>
     <img src="img/tetris-logo.png" width="300" height="200" id="tetrislogo">
     <canvas id="canvas" width="400" height="800" >  </canvas>
+    <div id="gameoverdiv">
     <p id="gameover">GAME OVER</p>
     <button onClick="gameInstance.resetVars()" id='playAgainButton'><span class='glowing-txt'>PLA<span class='faulty-letter'>Y</span> AGAIN</span></button>
-    <canvas id="nextShapeCanvas" width="200" height="200"></canvas>
+    </div>
+      <canvas id="nextShapeCanvas" width="200" height="200"></canvas>
     <canvas id="scoreCanvas" width="200" height="200"></canvas>
 
     <img id="image" src="img/tetromino.png" style="display: none" />
