@@ -61,13 +61,13 @@ class Drawing {
     }
 
     moveRight() {
-        if (this.checkRight() && this.checkBottom()) {
+        if (this.checkRight()) {
             this.x += 1;
         }
     }
 
     moveLeft() {
-        if (this.checkLeft() && this.checkBottom()) {
+        if (this.checkLeft()) {
             this.x -= 1;
         }
     }
@@ -79,7 +79,7 @@ class Drawing {
         }
     }
     changeRotation() {
-        if (this.checkBottom() && this.checkLeft() && this.checkRight()) {
+        if (this.checkBottom()) {
             let tempTemplate = [];
             for (let i = 0; i < this.template.length; i++)
                 tempTemplate[i] = this.template[i].slice();
