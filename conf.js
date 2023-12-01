@@ -13,6 +13,8 @@ const squareCountX = canvas.width / size;
 const squareCountY = canvas.height / size;
 const musique = document.getElementById('musique');
 
+let nIntervId;
+let nIntervId2;
 let gameMap;
 let gameOver;
 let currentShape;

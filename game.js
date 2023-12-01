@@ -48,8 +48,8 @@ class Game {
 
 
     gameLoop () {
-        setInterval(this.update, 1000 / gameSpeed);
-        setInterval(draw, 1000 / framePerSecond);
+        nIntervId = setInterval(this.update, 1000 / gameSpeed);
+        nIntervId2 = setInterval(draw, 1000 / framePerSecond);
     };
 }
 
